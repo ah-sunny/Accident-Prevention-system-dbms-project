@@ -19,8 +19,8 @@ console.log("clicked")
             name: result?.user?.displayName,
             email: result?.user?.email,
             photoURL: result?.user?.photoURL,
-            role : "seller",
-            status : userDetails?.role === "buyer" ? "approved": "pending",
+            role : "driver",
+            status : userDetails?.role === "driver" ? "approved": "pending",
             // status: "approved",
             wishlist: [],
             cart: []
@@ -50,7 +50,6 @@ console.log("clicked")
 
         
 
-        toast.success("user log in succesfully")
         navigate('/')
     })
        .catch(error => {

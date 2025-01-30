@@ -1,7 +1,6 @@
 
 import { FaOpencart } from "react-icons/fa";
-import { LiaCartPlusSolid } from "react-icons/lia";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import {  NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from "sweetalert2";

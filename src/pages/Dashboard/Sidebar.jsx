@@ -1,14 +1,16 @@
-import { BsCart4 } from "react-icons/bs";
+
 import { GrOverview } from "react-icons/gr";
 import { SiHomeadvisor } from "react-icons/si";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { RiSkull2Fill } from "react-icons/ri";
+import { MdAddLocationAlt } from "react-icons/md";
 const Sidebar = () => {
 
     const { logOut } = useAuth()
     return (
-        <div className="bg-gray-300 border-r-2 border-r-black min-h-screen p-1 lg:p-5" >
-            <h1 className="text-base lg:text-3xl font-medium lg:font-bold mx-auto text-center my-7 " >Accident Prevention   </h1>
+        <div className="bg-gray-300 border-r-2 border-r-black h-full min-h-screen p-1 lg:p-5" >
+            <h1 className="text-base lg:text-3xl font-medium lg:font-bold mx-auto text-center my-7 " >Accident  </h1>
             <div>
                 <ul className="flex flex-col gap-3 pl-1 font-semibold" >
                     <li>
@@ -18,9 +20,14 @@ const Sidebar = () => {
                             Overview</NavLink>
                     </li>
                     <li>
-                        <Link to="/dashboard/cart" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
-                            <BsCart4 />
-                            cart</Link>
+                        <NavLink to="/dashboard/place" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                            <RiSkull2Fill />
+                            Danger Zones</NavLink>
+                    </li>
+                    <li>
+                        <Link to="/dashboard/add-place" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                            <MdAddLocationAlt />
+                            AddPlace</Link>
                     </li>
 
 
@@ -64,8 +71,8 @@ const Sidebar = () => {
                     } */}
 
 
-                    <li>
-                        <Link to="/" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                    <li className="mt-5 pt-5 border-t-2 border-black border-dashed " >  
+                        <Link to="/" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1 " >
                             <SiHomeadvisor />
                             Home</Link>
                     </li>

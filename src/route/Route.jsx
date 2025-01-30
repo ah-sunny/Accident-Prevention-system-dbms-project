@@ -7,6 +7,8 @@ import AboutUs from "../pages/aboutUs/AboutUs";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import { OverView } from "../pages/Dashboard/OverView";
+import Place from "../pages/Dashboard/Place";
+import { AddPlace } from "../pages/Dashboard/AddPlace";
 
 
 export const router = createBrowserRouter([
@@ -39,7 +41,16 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/dashboard/overview',
-        element: <OverView></OverView>}
+        element: <OverView></OverView>
+      },
+      {
+        path: "/dashboard/place",
+        element: <Place></Place>
+      },
+      {
+        path: "/dashboard/add-place",
+        element: <AddPlace></AddPlace>
+      }
 
 
     ]

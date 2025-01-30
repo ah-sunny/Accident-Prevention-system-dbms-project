@@ -74,9 +74,8 @@ import useAuth from "../hooks/useAuth";
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         <li><NavLink to="/" >Home</NavLink></li>
-                        <li><NavLink to="/products" >Products</NavLink></li>
-                        <li><NavLink to="/contact" >Contact</NavLink></li>
-                        <li><NavLink to="/about" >About Us</NavLink></li>
+                        <li><NavLink to="/dashboard" >Dashboard</NavLink></li>
+                        <li><NavLink to="/about-us" >About Us</NavLink></li>
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-sm lg:text-xl"><FaOpencart /> Accident Preventor</a>
@@ -84,9 +83,8 @@ import useAuth from "../hooks/useAuth";
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     <li><NavLink to="/" >Home</NavLink></li>
-                    <li><NavLink to="/products" >Products</NavLink></li>
-                    <li><NavLink to="/contact" >Contact</NavLink></li>
-                    <li><NavLink to="/about" >About Us</NavLink></li>
+                    <li><NavLink to="/dashboard" >Dashboard</NavLink></li>
+                    <li><NavLink to="/about-us" >About Us</NavLink></li>
 
 
                 </ul>
@@ -95,12 +93,13 @@ import useAuth from "../hooks/useAuth";
                 {
                     user ?
 
-                        <> <button  >
+                        <> 
+                        {/* <button  >
                             <Link to='/dashboard/cart' className="indicator mr-4">
                                 <span className="indicator-item badge badge-sm px-1 badge-secondary">45+</span>
                                 <LiaCartPlusSolid className="size-6 mr-1.5" />
                             </Link>
-                        </button>
+                        </button> */}
 
                             
 

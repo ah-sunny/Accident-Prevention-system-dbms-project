@@ -7,6 +7,8 @@ import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import GoogleLogIn from "../../component/GoogleLogIn";
 import useAuth from "../../hooks/useAuth"
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const Register = () => {
 
@@ -30,39 +32,40 @@ const Register = () => {
     const userDetails = {
       name: name,
       email: data.email,
-      photoURL: data.photoURL,
+      password: data.password,
       role: data?.role,
-      status: data.role === "buyer" ? "approved " : "pending",
-      wishlist: [],
-      cart: [],
+      status: data?.role == "admin" ? "pending" : "approved",
+
     }
     console.log(userDetails)
+
 
     createUser(data.email, data.password)
       .then((res) => {
         console.log(res.user)
 
         //send to server
-        //   axios.post("https://mini-mart-server.vercel.app/users",userDetails)
-        //   .then(res => {
-        //     if (res.data.insertedId) {
-        //         console.log('user added to the database')
-        //         reset();
-        //         Swal.fire({
-        //             position: 'center',
-        //             icon: 'success',
-        //             title: 'User created successfully.',
-        //             showConfirmButton: false,
-        //             timer: 1500
-        //         });
+        axios.post("http://localhost:4000/add_user", userDetails)
+          .then(res => {
+            if (res.data.insertedId) {
+              console.log('user added to the database')
+              reset();
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'User created successfully.',
+                showConfirmButton: false,
+                timer: 1500
+              });
 
-        //         navigate("/");
-        //     }
-        // })
-        // .catch(error => {
-        //     // console.error(error)
-        //     toast.error(`${error.message}`)
-        // })
+              navigate("/");
+            }
+          })
+          .catch(error => {
+            // console.error(error)
+            toast.error(`${error.message}`)
+          })
+
 
         toast.success("user created")
         navigate("/")
@@ -150,18 +153,18 @@ const Register = () => {
             {errors.confirmPass &&
               <span className="text-red-500 text-xs" >{errors.confirmPass.message}</span>}
 
-            {/* <div className="form-control">
+            <div className="form-control">
               <label className="label">
                 <span className="label-text">Role</span>
               </label>
               <select {...register("role", { required: true, })} className="select select-bordered w-full max-w-xs">
-                <option value='buyer' >buyer</option>
-                <option value='seller' >seller</option>
+                <option value='normal-user' >normal user</option>
+                <option value='admin' >Admin</option>
               </select>
               {
                 errors.role && <span> You must select the role</span>
               }
-            </div> */}
+            </div>
 
             <div className="form-control mt-1">
               <button type="submit" className="btn btn-primary ">Register</button>

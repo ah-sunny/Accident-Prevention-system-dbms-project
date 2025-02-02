@@ -33,7 +33,7 @@ const Register = () => {
       name: name,
       email: data.email,
       password: data.password,
-      role: data?.role,
+      role: "normal-user",
       status: data?.role == "admin" ? "pending" : "approved",
 
     }
@@ -67,7 +67,7 @@ const Register = () => {
           })
 
 
-        toast.success("user created")
+        // toast.success("user created")
         navigate("/")
         reset()
       })
@@ -153,7 +153,7 @@ const Register = () => {
             {errors.confirmPass &&
               <span className="text-red-500 text-xs" >{errors.confirmPass.message}</span>}
 
-            <div className="form-control">
+            {/* <div className="form-control">
               <label className="label">
                 <span className="label-text">Role</span>
               </label>
@@ -164,7 +164,7 @@ const Register = () => {
               {
                 errors.role && <span> You must select the role</span>
               }
-            </div>
+            </div> */}
 
             <div className="form-control mt-1">
               <button type="submit" className="btn btn-primary ">Register</button>

@@ -11,6 +11,9 @@ import Place from "../pages/Dashboard/Place";
 import { AddPlace } from "../pages/Dashboard/AddPlace";
 import DetailsAccident from "../pages/Dashboard/DetailsAccident";
 import SingleDetails from "../pages/Dashboard/SingleDetails";
+import MyRequest from "../pages/Dashboard/MyRequest";
+import EditRequest from "../pages/Dashboard/EditRequest";
+import AllUser from "../pages/Dashboard/admin/AllUser";
 
 
 export const router = createBrowserRouter([
@@ -60,6 +63,18 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/single-details/:accidentID",
         element: <SingleDetails></SingleDetails>
+      },
+      {
+        path: "/dashboard/my-request",
+        element: <MyRequest></MyRequest>
+      },
+      {
+        path: "/dashboard/edit-request/:requestAccidentID",
+        element: <EditRequest></EditRequest>
+      },
+      {
+        path: "/dashboard/alluser",
+        element: <AllUser></AllUser>
       }
 
 

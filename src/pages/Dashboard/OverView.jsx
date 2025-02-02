@@ -1,9 +1,25 @@
+import { useEffect, useState } from "react"
 import useAuth from "../../hooks/useAuth"
+import axios from "axios"
 
 
 export const OverView = () => {
-  const user = useAuth()
-  console.log("overview: ", user)
+ 
+  const {  user } = useAuth()
+  const [userInfo, setUserInfo] = useState([])
+  // console.log("sidebar: ",userInfo)
+
+  useEffect(() => {
+      axios.get(`http://localhost:4000/get_user?email=${user.email}`)
+          .then(res => {
+              setUserInfo(res.data.user)
+              // console.log(res.data)
+          })
+          .catch(err => {
+              console.log(err)
+          })
+  }, [user.email])
+
   return (
     <div className="flex justify-center items-center ">
       <div className="card bg-base-100 w-96 shadow-xl">
@@ -14,13 +30,13 @@ export const OverView = () => {
         </figure>
         <div className="card-body">
           <h2 className="card-title text-3xl">
-            {user?.name}
+            {userInfo?.name}
             
           </h2>
-          <p> <span className="font-bold">Email :</span> {user?.email}</p>
+          <p> <span className="font-bold">Email :</span> {userInfo?.email}</p>
           <div className="card-actions justify-end">
             {/* <div className="badge badge-outline">Role - {user?.role}</div> */}
-            <div className="badge badge-secondary text-xl p-4 text-black font-bold "> Normal USER </div>
+            <div className="badge badge-secondary text-xl p-4 text-black font-bold "> {userInfo?.role} </div>
             {/* <div className="badge badge-outline">Products</div> */}
           </div>
         </div>

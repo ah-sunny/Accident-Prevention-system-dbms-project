@@ -1,95 +1,57 @@
-import { useForm } from "react-hook-form";
-// import { toast, ToastContainer } from "react-toastify";
-// import 'react-toastify/dist/ReactToastify.css';
-import useAuth from "../../hooks/useAuth";
-import { useEffect, useState } from "react";
+// import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import Swal from "sweetalert2";
-import { toast, ToastContainer } from "react-toastify";
-// import { useEffect, useState } from "react";
-// import axios from "axios";
-// import Swal from "sweetalert2";
-// import { Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
 
 
-export const AddPlace = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
 
-    const { user } = useAuth()
-    const [userInfo, setUserInfo] = useState([])
-    // console.log("place: ",userInfo)
-
+const EditRequest = () => {
+    const {requestAccidentID} = useParams()
+    const requestAccidentIDInt = parseInt(requestAccidentID)
+const [editData, setEditData] = useState({})
+// console.log("editData",editData)
+const { register,  handleSubmit, formState: { errors } } = useForm()
     useEffect(() => {
-        axios.get(`http://localhost:4000/get_user?email=${user.email}`)
+        axios.get(`http://localhost:4000/get_req_accidentsID?requestAccidentID=${requestAccidentIDInt}`)
             .then(res => {
-                setUserInfo(res.data.user)
-                // console.log(res.data)
+                setEditData(res.data[0])
+                // console.log(res.data[0])
             })
             .catch(err => {
                 console.log(err)
             })
-    }, [user.email])
 
+    }, [requestAccidentIDInt]);
 
-    const handleRequestExperience = async (data) => {
-        const userID = userInfo?.userID
-        const useremail = userInfo?.email
-        const username = userInfo?.name
-        const reqInfo = { ...data, userID, useremail, username }
-        console.log("clicked add butto", useremail)
-        console.log("data : ", reqInfo)
-
-        //send to server
-        axios.post("http://localhost:4000/add_request_accident", reqInfo)
-            .then(res => {
-                if (res.data) {
-                    console.log('request sent ', res.data)
-                    //  reset();
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'request sent successfully.',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-
-                    //  Navigate("/");
-                }
-            })
-            .catch(error => {
-                // console.error(error)
-                toast.error(`${error.message}`)
-            })
-
-
-
+    const handleUpdate = async (data) => {
+        console.log("update", data)
     }
 
+
+
+
     return (
-    <div>
+        <div>
         <div>
             {/* <h1 className="text-3xl mx-auto text-center font-bold border-b-2 pb-3 border-black">Add Unsafe Routes & Accident Details</h1> */}
-            <h1 className="text-2xl mx-auto text-center font-bold border-b-2 pb-3 border-black">Request to the admin: Add your experience to the database.</h1>
+            <h1 className="text-2xl mx-auto text-center font-bold border-b-2 pb-3 border-black">Update My Request</h1>
 
             <div className="mt-4">
-                <form className="card-body" onSubmit={handleSubmit(handleRequestExperience)} >
+                <form className="card-body" onSubmit={handleSubmit(handleUpdate)} >
                     {/* 1st row  */}
                     <div className=" flex justify-between gap-5 ">
                         <div className="form-control w-full ">
                             <label className="label">
                                 <span className="label-text">User Name :</span>
                             </label>
-                            <input disabled defaultValue={userInfo.name} type="text" placeholder=" your name" className="input input-bordered" />
+                            <input disabled  type="text" placeholder=" your name" className="input input-bordered" />
                         </div>
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text">Email :</span>
                             </label>
-                            <input disabled defaultValue={userInfo.email} type="email" placeholder="User email" className="input input-bordered" />
+                            <input disabled  type="email" placeholder="User email" className="input input-bordered" />
                         </div>
 
                     </div>
@@ -101,21 +63,21 @@ export const AddPlace = () => {
                             <label className="label">
                                 <span className="label-text">Date</span>
                             </label>
-                            <input {...register("date", { required: true })} type="text" placeholder="format like that '2022-02-02' " className="input input-bordered" />
+                            <input defaultValue={editData?.date} defaultChecked {...register("date", )}  type="text" placeholder="format like that '2022-02-02' " className="input input-bordered" />
                             {errors.date && <span className="text-red-500 text-xs" >Date is required</span>}
                         </div>
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text">Time</span>
                             </label>
-                            <input {...register("time", { required: true })} type="text" placeholder="format like that '06:22:10' " className="input input-bordered" />
+                            <input {...register("time", )} defaultValue={editData?.time} type="text" placeholder="format like that '06:22:10' " className="input input-bordered" />
                             {errors.time && <span className="text-red-500 text-xs" >Time is required</span>}
                         </div>
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text">Location</span>
                             </label>
-                            <input {...register("location", { required: true })} type="text" placeholder="Location" className="input input-bordered" />
+                            <input {...register("location", )} defaultValue={editData?.location} type="text" placeholder="Location" className="input input-bordered" />
                             {errors.location && <span className="text-red-500 text-xs" >Location is required</span>}
                         </div>
                     </div>
@@ -126,14 +88,14 @@ export const AddPlace = () => {
                             <label className="label">
                                 <span className="label-text">No. of Death </span>
                             </label>
-                            <input {...register("deathNumber", { required: true })} type="number" placeholder=" your name" className="input input-bordered" />
+                            <input {...register("deathNumber", )} defaultValue={editData?.deathNumber} type="number" placeholder=" your name" className="input input-bordered" />
                             {errors.deathNumber && <span className="text-red-500 text-xs" >Number of death is required</span>}
                         </div>
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text"> Repair Cost</span>
                             </label>
-                            <input {...register("repairCost", { required: true })} type="number" placeholder="repairCost" className="input input-bordered" />
+                            <input {...register("repairCost", )} value={editData?.repairCost} type="number" placeholder="repairCost" className="input input-bordered" />
                             {errors.repairCost && <span className="text-red-500 text-xs" >repairCost is required</span>}
                         </div>
                     </div>
@@ -146,7 +108,7 @@ export const AddPlace = () => {
                             <label className="label">
                                 <span className="label-text">Accident Vehicle</span>
                             </label>
-                            <input {...register("vehicleTypes", { required: true })} type="text" placeholder="vehicleTypes" className="input input-bordered" />
+                            <input {...register("vehicleTypes", )} defaultValue={editData?.vehicleTypes} type="text" placeholder="vehicleTypes" className="input input-bordered" />
                             {errors.vehicleTypes && <span className="text-red-500 text-xs" >vehicleTypes is required</span>}
                         </div>
 
@@ -154,7 +116,7 @@ export const AddPlace = () => {
                             <label className="label">
                                 <span className="label-text">Damage Parts :</span>
                             </label>
-                            <input {...register("damageParts", { required: true })} type="text" placeholder="damageParts" className="textarea textarea-bordered " />
+                            <input {...register("damageParts", )} defaultValue={editData?.damageParts} type="text" placeholder="damageParts" className="textarea textarea-bordered " />
                             {errors.damageParts && <span className="text-red-500 text-xs" >damageParts is required</span>}
                         </div>
                     </div>
@@ -167,7 +129,7 @@ export const AddPlace = () => {
                             <label className="label">
                                 <span className="label-text">Image Url</span>
                             </label>
-                            <input {...register("image", { required: true })} type="text" placeholder="accident locattion image" className="textarea textarea-bordered " />
+                            <input {...register("image", )} defaultValue={editData?.image} type="text" placeholder="accident locattion image" className="textarea textarea-bordered " />
                             {errors.image && <span className="text-red-500 text-xs" >image is required</span>}
                         </div>
                     </div>
@@ -178,7 +140,7 @@ export const AddPlace = () => {
                             <label className="label">
                                 <span className="label-text">Description</span>
                             </label>
-                            <input {...register("description", { required: true })} type="text" placeholder="accident details " className="textarea textarea-bordered h-20" />
+                            <input {...register("description", )} defaultValue={editData?.description}  type="text" placeholder="accident details " className="textarea textarea-bordered h-20" />
                             {errors.description && <span className="text-red-500 text-xs" >Description is required</span>}
                         </div>
                     </div>
@@ -190,12 +152,10 @@ export const AddPlace = () => {
             </div>
 
         </div>
-        <ToastContainer></ToastContainer>
+        {/* <ToastContainer></ToastContainer> */}
     </div>
 
+    );
+};
 
-    )
-}
-
-
-
+export default EditRequest;

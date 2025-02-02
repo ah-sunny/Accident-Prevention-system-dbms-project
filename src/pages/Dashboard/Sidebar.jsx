@@ -5,9 +5,28 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { RiSkull2Fill } from "react-icons/ri";
 import { MdAddLocationAlt } from "react-icons/md";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { IoBagHandleOutline } from "react-icons/io5";
+// import {  useEffect, useState } from "react";
+// import axios from "axios";
 const Sidebar = () => {
 
-    const { logOut } = useAuth()
+    const { logOut, user } = useAuth()
+    const [userInfo, setUserInfo] = useState([])
+    // console.log("sidebar: ",userInfo)
+
+    useEffect(() => {
+        axios.get(`http://localhost:4000/get_user?email=${user.email}`)
+            .then(res => {
+                setUserInfo(res.data.user)
+                // console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [user.email])
+
     return (
         <div className="bg-gray-300 border-r-2 border-r-black h-full min-h-screen p-1 lg:p-5" >
             <h1 className="text-base lg:text-3xl font-medium lg:font-bold mx-auto text-center my-7 " >Accident  </h1>
@@ -19,62 +38,46 @@ const Sidebar = () => {
                             <GrOverview />
                             Overview</NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/dashboard/place" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
-                            <RiSkull2Fill />
-                            Danger Zones</NavLink>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/add-place" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
-                            <MdAddLocationAlt />
-                            AddPlace</Link>
-                    </li>
+
+                    
+
+                    {
+                        userInfo.role === 'admin' ?
+                            <>
+                                <li>
+                                    <NavLink to="/dashboard/alluser" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                                        <IoBagHandleOutline />
+                                        All-user</NavLink>
+                                </li>
+                            </>
+                            :
+                            <>
+
+                                <li>
+                                    <NavLink to="/dashboard/place" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                                        <RiSkull2Fill />
+                                        Danger Zones</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/dashboard/add-place" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                                        <MdAddLocationAlt />
+                                        Add Request</NavLink>
+                                </li>
+
+                                <li>
+                                    <NavLink to="/dashboard/my-request" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                                        <IoBagHandleOutline />
+                                        My Request</NavLink>
+                                </li>
+
+                            </>
+                    }
 
 
-                    {/* buyer sidebar */}
-                    {/* {
-                        userData.role === 'buyer' &&
-                        <>
-                            <li>
-                                <Link to="/dashboard/wishlist" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
-                                    <GiSelfLove />
-                                    wishlist</Link>
-                            </li>
-                            <li>
-                                <Link to="/dashboard/cart" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
-                                    <BsCart4 />
-                                    cart</Link>
-                            </li>
-                        </>
-                    } */}
-
-
-                    {/* seller sidebar */}
-                    {/* {
-                        userData.role === 'seller' &&
-                        <>
-                            <li>
-                                <Link to="/dashboard/my-product" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1"
-
-                                >
-                                    <FaOpencart />
-                                    My Product</Link>
-                            </li>
-                            <li>
-                                <Link to="/dashboard/add-product" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
-                                    <FaCartPlus />
-                                    Add Product</Link>
-                            </li>
-
-
-                        </>
-                    } */}
-
-
-                    <li className="mt-5 pt-5 border-t-2 border-black border-dashed " >  
-                        <Link to="/" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1 " >
+                    <li className="mt-5 pt-5 border-t-2 border-black border-dashed " >
+                        <NavLink to="/" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1 " >
                             <SiHomeadvisor />
-                            Home</Link>
+                            Home</NavLink>
                     </li>
                     <button className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" onClick={() => logOut()}><Link to='/'>Logout</Link></button>
                 </ul>

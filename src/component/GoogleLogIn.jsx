@@ -2,6 +2,8 @@ import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import useAuth from '../hooks/useAuth';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const GoogleLogIn = () => {
   const {GoogleLogin} = useAuth();
@@ -9,45 +11,43 @@ const GoogleLogIn = () => {
 
 
   const handleGoogleLogin=()=>{
-console.log("clicked")
+// console.log("clicked")
     let userDetails ={} 
     GoogleLogin()
     .then((result)=>{
         console.log("google",result.user)
 
          userDetails = {
-            name: result?.user?.displayName,
-            email: result?.user?.email,
-            photoURL: result?.user?.photoURL,
-            role : "driver",
-            status : userDetails?.role === "driver" ? "approved": "pending",
-            // status: "approved",
-            wishlist: [],
-            cart: []
+          name: result?.user?.displayName,
+          email: result?.user?.email,
+          password: "hidden",
+          role: "normal-user",
+          status:  "approved",
+    
         }
         console.log("user details",userDetails)
 
-        // axios.post('https://mini-mart-server.vercel.app/users', userDetails)
-        // .then((res) => {
-        //     if (res.data.insertedId) {
-        //         // console.log('user added to the database')
-                
-        //         Swal.fire({
-        //             position: 'center',
-        //             icon: 'success',
-        //             title: 'User created successfully.',
-        //             showConfirmButton: false,
-        //             timer: 1500
-        //         });
+         //send to server
+         axios.post("http://localhost:4000/add_user", userDetails)
+         .then(res => {
+           if (res.data.insertedId) {
+             console.log('user added to the database')
+             
+             Swal.fire({
+               position: 'center',
+               icon: 'success', 
+               title: 'User created successfully.',
+               showConfirmButton: false,
+               timer: 1500
+             });
 
-        //         navigate("/");
-        //     }
-        // })
-        // .catch(error => {
-        //     // console.error(error)
-        //     toast.error(`${error.message}`)
-        // })
-
+             navigate("/");
+           }
+         })
+         .catch(() => {
+          //  console.error(error)
+          //  toast.error(`${error.message}`)
+         })
         
 
         navigate('/')

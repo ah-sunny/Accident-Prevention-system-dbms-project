@@ -9,6 +9,8 @@ import PrivateRoute from "./PrivateRoute";
 import { OverView } from "../pages/Dashboard/OverView";
 import Place from "../pages/Dashboard/Place";
 import { AddPlace } from "../pages/Dashboard/AddPlace";
+import DetailsAccident from "../pages/Dashboard/DetailsAccident";
+import SingleDetails from "../pages/Dashboard/SingleDetails";
 
 
 export const router = createBrowserRouter([
@@ -50,6 +52,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/add-place",
         element: <AddPlace></AddPlace>
+      },
+      {
+        path: "/dashboard/details-accident/:location",
+        element: <DetailsAccident></DetailsAccident>
+      },
+      {
+        path: "/dashboard/single-details/:accidentID",
+        element: <SingleDetails></SingleDetails>
       }
 
 

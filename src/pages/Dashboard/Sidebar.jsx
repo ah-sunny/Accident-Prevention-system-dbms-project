@@ -3,11 +3,13 @@ import { GrOverview } from "react-icons/gr";
 import { SiHomeadvisor } from "react-icons/si";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { RiSkull2Fill } from "react-icons/ri";
-import { MdAddLocationAlt } from "react-icons/md";
+import { RiChatSettingsLine, RiSkull2Fill } from "react-icons/ri";
+import { MdAddLocationAlt, MdAddToPhotos } from "react-icons/md";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { IoBagHandleOutline } from "react-icons/io5";
+import { PiBusBold } from "react-icons/pi";
+import { IoIosPeople } from "react-icons/io";
 // import {  useEffect, useState } from "react";
 // import axios from "axios";
 const Sidebar = () => {
@@ -38,26 +40,42 @@ const Sidebar = () => {
                             <GrOverview />
                             Overview</NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/dashboard/place" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                            <RiSkull2Fill />
+                            Danger Zones</NavLink>
+                    </li>
 
-                    
+
 
                     {
                         userInfo.role === 'admin' ?
                             <>
                                 <li>
                                     <NavLink to="/dashboard/alluser" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
-                                        <IoBagHandleOutline />
+                                        <IoIosPeople />
                                         All-user</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/dashboard/allRequestAccident" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                                        <PiBusBold />
+                                        All-Request Accident</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/dashboard/manage-danger-data" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                                        <RiChatSettingsLine />
+                                        Manage Danager-Data</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/dashboard/add-danger-data" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                                        <MdAddToPhotos />
+                                        Add Danager-Data</NavLink>
                                 </li>
                             </>
                             :
                             <>
 
-                                <li>
-                                    <NavLink to="/dashboard/place" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
-                                        <RiSkull2Fill />
-                                        Danger Zones</NavLink>
-                                </li>
+
                                 <li>
                                     <NavLink to="/dashboard/add-place" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
                                         <MdAddLocationAlt />
@@ -69,6 +87,9 @@ const Sidebar = () => {
                                         <IoBagHandleOutline />
                                         My Request</NavLink>
                                 </li>
+
+                               
+
 
                             </>
                     }

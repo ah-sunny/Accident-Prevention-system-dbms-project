@@ -14,6 +14,9 @@ import SingleDetails from "../pages/Dashboard/SingleDetails";
 import MyRequest from "../pages/Dashboard/MyRequest";
 import EditRequest from "../pages/Dashboard/EditRequest";
 import AllUser from "../pages/Dashboard/admin/AllUser";
+import AllReqAccident from "../pages/Dashboard/admin/AllReqAccident";
+import ManageDangerData from "../pages/Dashboard/admin/ManageDangerData";
+import AddDangerData from "../pages/Dashboard/admin/AddDangerData";
 
 
 export const router = createBrowserRouter([
@@ -75,6 +78,18 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/alluser",
         element: <AllUser></AllUser>
+      },
+      {
+        path: "/dashboard/allRequestAccident",
+        element: <AllReqAccident></AllReqAccident>
+      },
+      {
+        path: "/dashboard/manage-danger-data",
+        element: <ManageDangerData></ManageDangerData>
+      },
+      {
+        path: "/dashboard/add-danger-data",
+        element: <AddDangerData></AddDangerData>
       }
 
 

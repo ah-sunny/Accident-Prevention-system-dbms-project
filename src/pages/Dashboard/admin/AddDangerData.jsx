@@ -1,46 +1,28 @@
-import { useForm } from "react-hook-form";
-
-import useAuth from "../../hooks/useAuth";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { toast, ToastContainer } from "react-toastify";
 
 
 
-export const AddPlace = () => {
+
+
+const AddDangerData = () => {
+
+    
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
 
-    const { user } = useAuth()
-    const [userInfo, setUserInfo] = useState([])
-    // console.log("place: ",userInfo)
-
-    useEffect(() => {
-        axios.get(`http://localhost:4000/get_user?email=${user.email}`)
-            .then(res => {
-                setUserInfo(res.data.user)
-                // console.log(res.data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }, [user.email])
-
-
-    const handleRequestExperience = async (data) => {
-        const userID = userInfo?.userID
-        const useremail = userInfo?.email
-        const username = userInfo?.name
-        const reqInfo = { ...data, userID, useremail, username }
-        console.log("clicked add butto", useremail)
-        console.log("data : ", reqInfo)
+    const handleAddDangerData = async (data) => {
+   
+        
+        console.log("clicked add butto", data)
+        // console.log("data : ", reqInfo)
 
         //send to server
-        axios.post("http://localhost:4000/add_request_accident", reqInfo)
+        axios.post("http://localhost:4000/add_mainAccidentDetails", data)
             .then(res => {
                 if (res.data) {
                     console.log('request sent ', res.data)
@@ -48,7 +30,7 @@ export const AddPlace = () => {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
-                        title: 'request sent successfully.',
+                        title: 'Added data in Danger Zone.',
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -57,38 +39,23 @@ export const AddPlace = () => {
                 }
             })
             .catch(error => {
-                // console.error(error)
-                toast.error(`${error.message}`)
+                console.error(error)
+                // toast.error(`${error.message}`)
             })
 
 
 
     }
-
     return (
-    <div>
         <div>
+          <div>
             {/* <h1 className="text-3xl mx-auto text-center font-bold border-b-2 pb-3 border-black">Add Unsafe Routes & Accident Details</h1> */}
             <h1 className="text-2xl mx-auto text-center font-bold border-b-2 pb-3 border-black">Request to the admin: Add your experience to the database.</h1>
 
             <div className="mt-4">
-                <form className="card-body" onSubmit={handleSubmit(handleRequestExperience)} >
-                    {/* 1st row  */}
-                    <div className=" flex justify-between gap-5 ">
-                        <div className="form-control w-full ">
-                            <label className="label">
-                                <span className="label-text">User Name :</span>
-                            </label>
-                            <input disabled defaultValue={userInfo.name} type="text" placeholder=" your name" className="input input-bordered" />
-                        </div>
-                        <div className="form-control w-full">
-                            <label className="label">
-                                <span className="label-text">Email :</span>
-                            </label>
-                            <input disabled defaultValue={userInfo.email} type="email" placeholder="User email" className="input input-bordered" />
-                        </div>
-
-                    </div>
+                <form className="card-body" onSubmit={handleSubmit(handleAddDangerData)} >
+                 
+                 
 
                     {/* 2nd line */}
 
@@ -186,12 +153,9 @@ export const AddPlace = () => {
             </div>
 
         </div>
-        <ToastContainer></ToastContainer>
-    </div>
+        {/* <ToastContainer></ToastContainer> */}
+        </div>
+    );
+};
 
-
-    )
-}
-
-
-
+export default AddDangerData;

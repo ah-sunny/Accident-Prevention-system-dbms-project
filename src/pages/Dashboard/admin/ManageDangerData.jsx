@@ -74,7 +74,7 @@ const handleDeletedata = (accidentID,requestAccidentID) => {
 
     return (
         <div>
-                    <h1 className="mx-auto text-center text-4xl font-bold italic pb-5 ">All Request Accident Details </h1>
+                    <h1 className="mx-auto text-center text-4xl font-bold italic pb-5 ">Manage All Danger Zone Data </h1>
        
                     <div className="mt-10">
                        {

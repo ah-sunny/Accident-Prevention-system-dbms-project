@@ -50,7 +50,7 @@ const AddDangerData = () => {
         <div>
           <div>
             {/* <h1 className="text-3xl mx-auto text-center font-bold border-b-2 pb-3 border-black">Add Unsafe Routes & Accident Details</h1> */}
-            <h1 className="text-2xl mx-auto text-center font-bold border-b-2 pb-3 border-black">Request to the admin: Add your experience to the database.</h1>
+            <h1 className="text-3xl italic mx-auto text-center font-bold border-b-2 pb-3 border-black">Add New Danger Data</h1>
 
             <div className="mt-4">
                 <form className="card-body" onSubmit={handleSubmit(handleAddDangerData)} >
@@ -146,7 +146,7 @@ const AddDangerData = () => {
                         </div>
                     </div>
                     <div className="form-control mt-5">
-                        <button type="submit" className="btn btn-primary text-lg  "> Send Request </button>
+                        <button type="submit" className="btn btn-primary text-lg italic "> Add New  </button>
                     </div>
 
                 </form>

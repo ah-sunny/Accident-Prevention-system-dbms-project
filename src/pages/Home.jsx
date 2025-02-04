@@ -1,7 +1,7 @@
 import Banner from "../component/home-Component/Banner"
 import ContactUs from "../component/home-Component/ContactUs"
 import Faq from "../component/home-Component/Faq"
-import Features from "../component/home-Component/Features"
+// import Features from "../component/home-Component/Features"
 import Testimonial from "../component/home-Component/Testimonial"
 
 
@@ -12,9 +12,9 @@ export const Home = () => {
 <div>
         <Banner></Banner>
       </div>
-      <div>
+      {/* <div>
         <Features></Features>
-      </div>
+      </div> */}
       <div>
         <Testimonial></Testimonial>
       </div>

@@ -31,7 +31,7 @@ const Testimonial = () => {
     </div>
 
     {/* Testimonial 3 */}
-    <div className="card bg-base-100 h-72 w-96 shadow-xl">
+    <div className="card bg-base-100 h-72z w-96 shadow-xl">
       <div className="card-body">
         <p> <GoCodeReview className="size-14 mx-auto" /> </p>
         <h2 className="card-title">Smart and Reliable!</h2>

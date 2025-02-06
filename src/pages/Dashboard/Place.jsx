@@ -54,7 +54,7 @@ const Place = () => {
     return (
         <div>
             <h1 className="mx-auto text-center text-4xl font-bold italic pb-5 ">Danger Zone</h1>
-            <div>
+            <div className="relative">
                 <form onSubmit={handleSubmit(handlePlace)} className="form-control">
                     <div className="flex  justify-center gap-5">
                         <div className="">
@@ -84,6 +84,21 @@ const Place = () => {
                         <button type="submit" className="btn btn-primary mt-11 w-48 font-bold p-0 text-base flex-shrink " >Show High-Risk Areas</button>
                     </div>
                 </form>
+                <div className="card shadow-lg space-y-5 p-5 w-fit absolute -right-2 -top-16">
+                    {/* <p>hello</p> */}
+                    <div className="flex gap-5 italic">
+                        <p className="bg-red-800 w-20 pr-5"></p>
+                        <p> Danger level : <span className="font-extrabold not-italic text-lg ml-2">HIGH</span> </p>
+                    </div>
+                    <div className="flex gap-5 italic" >
+                        <p className="bg-yellow-500 w-20 pr-5"></p>
+                        <p> Danger level : <span className="font-extrabold not-italic text-lg ml-2">MODERATE</span></p>
+                    </div>
+                    <div className="flex gap-5 italic">
+                        <p className="bg-green-700 w-20 pr-5"></p>
+                        <p> Danger level : <span className="font-extrabold not-italic text-lg ml-2">LOW</span> </p>
+                    </div>
+                </div>
             </div>
 
 
@@ -99,7 +114,7 @@ const Place = () => {
                                 <FaArrowUp className=" size-16 text-gray-500" />
                             </div>
                             <p className=" mb-4">
-                            To view the danger zone, please enter your location in the field at the top. <br /> This will help identify the dangerous areas nearby.
+                                To view the danger zone, please enter your location in the field at the top. <br /> This will help identify the dangerous areas nearby.
                             </p>
                         </div>
                     </> : <>

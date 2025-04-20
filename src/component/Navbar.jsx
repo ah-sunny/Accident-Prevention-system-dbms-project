@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
+import { RiSkull2Fill } from "react-icons/ri";
 
 
 
@@ -74,15 +75,17 @@ import useAuth from "../hooks/useAuth";
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         <li><NavLink to="/" >Home</NavLink></li>
                         <li><NavLink to="/dashboard/overview" >Dashboard</NavLink></li>
+                        <li><NavLink to="/dashboard/place" className='flex justify-center items-center' > <RiSkull2Fill className="text-lg" /> Danger Zone</NavLink></li>
                         <li><NavLink to="/about-us" >About Us</NavLink></li>
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-sm lg:text-xl"><FaOpencart /> Accident Preventor</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 font-semibold ">
                     <li><NavLink to="/" >Home</NavLink></li>
                     <li><NavLink to="/dashboard/overview" >Dashboard</NavLink></li>
+                    <li><NavLink to="/dashboard/place" className='flex justify-center items-center' > <RiSkull2Fill className="text-lg" /> Danger Zone</NavLink></li>
                     <li><NavLink to="/about-us" >About Us</NavLink></li>
 
 

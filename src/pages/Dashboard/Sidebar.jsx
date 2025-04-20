@@ -59,7 +59,7 @@ const Sidebar = () => {
                                 <li>
                                     <NavLink to="/dashboard/allRequestAccident" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
                                         <PiBusBold />
-                                        All-Request Accident</NavLink>
+                                        All User Accident </NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/dashboard/manage-danger-data" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
@@ -79,13 +79,13 @@ const Sidebar = () => {
                                 <li>
                                     <NavLink to="/dashboard/add-place" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
                                         <MdAddLocationAlt />
-                                        Add Request</NavLink>
+                                        Add DangerZone</NavLink>
                                 </li>
 
                                 <li>
                                     <NavLink to="/dashboard/my-request" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
                                         <IoBagHandleOutline />
-                                        My Request</NavLink>
+                                        My Accident</NavLink>
                                 </li>
 
                                

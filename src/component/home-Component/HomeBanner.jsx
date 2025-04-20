@@ -17,7 +17,7 @@ export const HomeBanner = () => {
           <p className="w-1/2 mx-auto text-center mt-12 pb-4">Monitor high-speed accident data and identify dangerous zones.
             Take preventive measures to reduce risks and ensure safer roads.
             Drive smart, stay safe, and make every journey secure.</p>
-          <Link to="/login" className="btn btn-primary">
+          <Link to="/dashboard/overview" className="btn btn-primary">
             <button className="btn btn-primary">Dashboard</button>
           </Link>
         </div>

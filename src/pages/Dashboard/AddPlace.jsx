@@ -127,10 +127,10 @@ export const AddPlace = () => {
                         </div>
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text"> Repair Cost</span>
+                                <span className="label-text"> Vehicle Number</span>
                             </label>
-                            <input {...register("repairCost", { required: true })} type="number" placeholder="repairCost" className="input input-bordered" />
-                            {errors.repairCost && <span className="text-red-500 text-xs" >repairCost is required</span>}
+                            <input {...register("repairCost", { required: true })} type="number" placeholder="vehicle" className="input input-bordered" />
+                            {errors.repairCost && <span className="text-red-500 text-xs" >vegicle is required</span>}
                         </div>
                     </div>
 
@@ -140,7 +140,7 @@ export const AddPlace = () => {
 
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text">Accident Vehicle</span>
+                                <span className="label-text">Accident Vehicle Types</span>
                             </label>
                             <input {...register("vehicleTypes", { required: true })} type="text" placeholder="vehicleTypes" className="input input-bordered" />
                             {errors.vehicleTypes && <span className="text-red-500 text-xs" >vehicleTypes is required</span>}

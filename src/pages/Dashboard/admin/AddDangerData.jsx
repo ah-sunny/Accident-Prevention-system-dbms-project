@@ -48,11 +48,11 @@ const AddDangerData = () => {
     }
     return (
         <div>
-          <div>
+          <div className="bg-red-400 p-12 rounded-2xl">
             {/* <h1 className="text-3xl mx-auto text-center font-bold border-b-2 pb-3 border-black">Add Unsafe Routes & Accident Details</h1> */}
             <h1 className="text-3xl italic mx-auto text-center font-bold border-b-2 pb-3 border-black">Add New Danger Data</h1>
 
-            <div className="mt-4">
+            <div className="mt-4 font-bold">
                 <form className="card-body" onSubmit={handleSubmit(handleAddDangerData)} >
                  
                  
@@ -94,9 +94,9 @@ const AddDangerData = () => {
                         </div>
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text"> Repair Cost</span>
+                                <span className="label-text"> Vehicle Number</span>
                             </label>
-                            <input {...register("repairCost", { required: true })} type="number" placeholder="repairCost" className="input input-bordered" />
+                            <input {...register("repairCost", { required: true })} type="number" placeholder="Vehicle" className="input input-bordered" />
                             {errors.repairCost && <span className="text-red-500 text-xs" >repairCost is required</span>}
                         </div>
                     </div>
@@ -107,7 +107,7 @@ const AddDangerData = () => {
 
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text">Accident Vehicle</span>
+                                <span className="label-text">Accident Vehicle Types</span>
                             </label>
                             <input {...register("vehicleTypes", { required: true })} type="text" placeholder="vehicleTypes" className="input input-bordered" />
                             {errors.vehicleTypes && <span className="text-red-500 text-xs" >vehicleTypes is required</span>}

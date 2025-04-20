@@ -45,10 +45,10 @@ const Place = () => {
     };
 
     // Function to get reversed danger percentage 
-    const getReversedPercentage = (percentage) => {
-        const reversed = 100 - percentage;
-        return reversed.toFixed(2); // Limit to 2 decimal places
-    };
+    // const getReversedPercentage = (percentage) => {
+    //     const reversed = 100 - percentage;
+    //     return reversed.toFixed(2); // Limit to 2 decimal places
+    // };
 
 
     return (
@@ -81,7 +81,7 @@ const Place = () => {
 
 
 
-                        <button type="submit" className="btn btn-primary mt-11 w-48 font-bold p-0 text-base flex-shrink " >Show High-Risk Areas</button>
+                        <button type="submit" className="btn btn-success text-white hover:text-black bg-red-600 mt-11 w-48 font-bold p-0 text-base flex-shrink " >Show High-Risk Areas</button>
                     </div>
                 </form>
                 <div className="card shadow-lg space-y-5 p-5 w-fit absolute -right-2 -top-16">
@@ -144,7 +144,7 @@ const Place = () => {
                                         <div className={`card text-black w-96 ${getBackgroundColor(item.level)} `}>
                                             <div className="card-body items-center text-center">
                                                 <h2 className="card-title">{item?.location}</h2>
-                                                <p>Danger Percentage : {getReversedPercentage(item.dangerPercentage)}%</p>
+                                                <p>Danger Percentage : {item?.dangerPercentage}%</p>
                                                 <p>Danger Level : {item?.level}</p>
                                                 <div className="card-actions justify-end">
                                                     <Link to={`/dashboard/details-accident/${item.location}`}>

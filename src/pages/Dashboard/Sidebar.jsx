@@ -35,13 +35,21 @@ const Sidebar = () => {
             <div>
                 <ul className="flex flex-col gap-3 pl-1 font-semibold" >
                     <li>
-                        <NavLink to="/dashboard/overview" className="flex  justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2  w-full  border-2 rounded-md border-black p-1 "
+                        <NavLink to="/dashboard/overview"
+                            className={({ isActive }) =>
+                                `flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1 transition-all duration-300 ${isActive ? 'bg-gradient-to-r from-red-500 to-blue-500 text-white' : 'text-black'
+                                }`
+                            }
                         >
                             <GrOverview />
                             Overview</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/dashboard/place" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                        <NavLink to="/dashboard/place"
+                            className={({ isActive }) =>
+                                `flex justify-center items-center text-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1 transition-all duration-300 ${isActive ? 'bg-gradient-to-r from-red-500 to-blue-500 text-white' : 'text-black'
+                                }`
+                            } >
                             <RiSkull2Fill />
                             Danger Zones</NavLink>
                     </li>
@@ -52,22 +60,38 @@ const Sidebar = () => {
                         userInfo.role === 'admin' ?
                             <>
                                 <li>
-                                    <NavLink to="/dashboard/alluser" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                                    <NavLink to="/dashboard/alluser"
+                                        className={({ isActive }) =>
+                                            `flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1 transition-all duration-300 ${isActive ? 'bg-gradient-to-r from-red-500 to-blue-500 text-white' : 'text-black'
+                                            }`
+                                        } >
                                         <IoIosPeople />
                                         All-user</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/allRequestAccident" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                                    <NavLink to="/dashboard/allRequestAccident"
+                                        className={({ isActive }) =>
+                                            `flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1 transition-all duration-300 ${isActive ? 'bg-gradient-to-r from-red-500 to-blue-500 text-white' : 'text-black'
+                                            }`
+                                        } >
                                         <PiBusBold />
-                                        All User Accident </NavLink>
+                                        All Req Accident </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/manage-danger-data" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                                    <NavLink to="/dashboard/manage-danger-data"
+                                        className={({ isActive }) =>
+                                            `flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1 transition-all duration-300 ${isActive ? 'bg-gradient-to-r from-red-500 to-blue-500 text-white' : 'text-black'
+                                            }`
+                                        } >
                                         <RiChatSettingsLine />
                                         Manage Danager-Data</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/add-danger-data" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                                    <NavLink to="/dashboard/add-danger-data"
+                                        className={({ isActive }) =>
+                                            `flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1 transition-all duration-300 ${isActive ? 'bg-gradient-to-r from-red-500 to-blue-500 text-white' : 'text-black'
+                                            }`
+                                        } >
                                         <MdAddToPhotos />
                                         Add Danager-Data</NavLink>
                                 </li>
@@ -75,20 +99,41 @@ const Sidebar = () => {
                             :
                             <>
 
+                                {/* <li>
+                                    <NavLink
+                                        to="/dashboard/add-danger-data"
+                                        className={({ isActive }) =>
+                                            `flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1 transition-all duration-300 ${isActive ? 'bg-red-500 text-white' : 'text-black'
+                                            }`
+                                        }
+                                    >
+                                        <MdAddToPhotos />
+                                        Add Danger-Data
+                                    </NavLink>
+                                </li> */}
+
 
                                 <li>
-                                    <NavLink to="/dashboard/add-place" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                                    <NavLink to="/dashboard/add-place"
+                                        className={({ isActive }) =>
+                                            `flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1 transition-all duration-300 ${isActive ? 'bg-gradient-to-r from-red-500 to-blue-500 text-white' : 'text-black'
+                                            }`
+                                        } >
                                         <MdAddLocationAlt />
-                                        Add DangerZone</NavLink>
+                                        Add New Accident Place </NavLink>
                                 </li>
 
                                 <li>
-                                    <NavLink to="/dashboard/my-request" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" >
+                                    <NavLink to="/dashboard/my-request"
+                                        className={({ isActive }) =>
+                                            `flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1 transition-all duration-300 ${isActive ? 'bg-gradient-to-r from-red-500 to-blue-500 text-white' : 'text-black'
+                                            }`
+                                        } >
                                         <IoBagHandleOutline />
                                         My Accident</NavLink>
                                 </li>
 
-                               
+
 
 
                             </>
@@ -96,11 +141,11 @@ const Sidebar = () => {
 
 
                     <li className="mt-5 pt-5 border-t-2 border-black border-dashed " >
-                        <NavLink to="/" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1 " >
+                        <NavLink to="/" className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1 bg-gradient-to-t from-sky-400 to-blue-700 text-white " >
                             <SiHomeadvisor />
                             Home</NavLink>
                     </li>
-                    <button className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1" onClick={() => logOut()}><Link to='/'>Logout</Link></button>
+                    <button className="flex justify-center items-center flex-col lg:flex-row text-xs lg:text-lg gap-0 lg:gap-2 border-2 rounded-md border-black p-1 bg-gradient-to-b from-sky-400 to-blue-700 text-white " onClick={() => logOut()}><Link to='/'>Logout</Link></button>
                 </ul>
 
 

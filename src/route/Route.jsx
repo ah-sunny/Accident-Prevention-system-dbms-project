@@ -73,7 +73,9 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/edit-request/:requestAccidentID",
-        element: <EditRequest></EditRequest>
+        element: <EditRequest></EditRequest>,
+        // loader: ({params})=> fetch(`https://parcel-management-server-red.vercel.app/bookParcel/${params.id}`),
+        loader: ({params})=> fetch(`http://localhost:4000/get_req_accidentsID?requestAccidentID=${params.requestAccidentID}`)
       },
       {
         path: "/dashboard/alluser",

@@ -54,8 +54,24 @@ const Place = () => {
 
     return (
         <div>
-            <h1 className="w-full lg:w-[25%]  mx-auto text-center text-xl lg:text-4xl font-bold italic pb-3 border-b-2 border-dashed border-b-blue-800 mb-9 ">Danger Zone</h1>
+            <h1 className="w-full lg:w-[25%]  mx-auto text-center text-xl lg:text-4xl font-bold italic pb-3 border-b-2 border-dashed border-b-blue-800 mb-2 lg:mb-9 ">Danger Zone</h1>
             <div className="relative">
+                 <div className="card items-center shadow-lg space-y-1 lg:space-y-5 mb-2 p-5 w-full lg:w-fit lg:absolute  lg:-right-2 lg:-top-16">
+                    {/* <p>hello</p> */}
+                    <div className="flex gap-5 italic">
+                        <p className="bg-red-800 w-20 pr-5"></p>
+                        <p> Danger level : <span className="font-extrabold not-italic text-lg ml-2">HIGH</span> </p>
+                    </div>
+                    <div className="flex gap-5 italic" >
+                        <p className="bg-yellow-500 w-20 lpr-5"></p>
+                        <p> Danger level : <span className="font-extrabold not-italic text-lg ml-2">Medium</span></p>
+                    </div>
+                    <div className="flex gap-5 italic">
+                        <p className="bg-green-700 w-20 pr-5"></p>
+                        <p> Danger level : <span className="font-extrabold not-italic text-lg ml-2">LOW</span> </p>
+                    </div>
+                </div>
+
                 <form onSubmit={handleSubmit(handlePlace)} className="form-control">
                     <div className="flex  justify-center gap-5">
                         <div className="">
@@ -85,21 +101,8 @@ const Place = () => {
                         <button type="submit" className="btn btn-success text-white hover:text-black bg-red-600 mt-11 w-48 font-bold p-0 text-base flex-shrink " >Show High-Risk Areas</button>
                     </div>
                 </form>
-                <div className="card shadow-lg space-y-5 p-5 w-fit absolute -right-2 -top-16">
-                    {/* <p>hello</p> */}
-                    <div className="flex gap-5 italic">
-                        <p className="bg-red-800 w-20 pr-5"></p>
-                        <p> Danger level : <span className="font-extrabold not-italic text-lg ml-2">HIGH</span> </p>
-                    </div>
-                    <div className="flex gap-5 italic" >
-                        <p className="bg-yellow-500 w-20 pr-5"></p>
-                        <p> Danger level : <span className="font-extrabold not-italic text-lg ml-2">Medium</span></p>
-                    </div>
-                    <div className="flex gap-5 italic">
-                        <p className="bg-green-700 w-20 pr-5"></p>
-                        <p> Danger level : <span className="font-extrabold not-italic text-lg ml-2">LOW</span> </p>
-                    </div>
-                </div>
+                {/* indicator div */}
+               
             </div>
 
 
@@ -107,10 +110,10 @@ const Place = () => {
 
             {/* road route  */}
 
-            <div className="mt-28">
+            <div className="mt-16 lg:mt-28">
                 {
                     dangerZone.length == 0 ? <>
-                        <div className="card border-2 border-red-400 shadow-2xl p-10 mx-auto text-center w-2/5 bg-base-200 flex flex-col items-center relative">
+                        <div className="card border-2 border-red-400 shadow-2xl p-5 lg:p-10 mx-auto text-center lg:w-2/5 bg-base-200 flex flex-col items-center relative">
                             <div className="absolute -top-9 ">
                                 <FaArrowUp className=" size-16 text-gray-500" />
                             </div>

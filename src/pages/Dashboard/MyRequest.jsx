@@ -82,7 +82,7 @@ const { data: myRequest = [], refetch } = useQuery({
 
     return (
         <div>
-            <h1 className="mx-auto text-center text-4xl font-bold italic pb-5 ">My Request Accident</h1>
+            <h1 className="mx-auto text-center text-4xl font-bold italic pb-5  border-b-2 border-dashed border-black">My Request Accident</h1>
 
             <div className="mt-10">
                 {

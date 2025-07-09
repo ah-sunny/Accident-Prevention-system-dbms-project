@@ -80,7 +80,7 @@ const AllUser = () => {
                                 text: "This User is Now Admin",
                                 icon: "success"
                             });
-                            console.log("confirm", res.data)
+                            // console.log("confirm", res.data)
                         }
                     })
                     .catch(err => {

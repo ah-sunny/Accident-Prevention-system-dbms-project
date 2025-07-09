@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import moment from "moment";
+import { MdDeleteForever } from "react-icons/md";
 import Swal from "sweetalert2";
 
 
@@ -115,16 +116,48 @@ const handleAddRequest = (requestAccidentID) => {
         }
     });
 
+}
 
 
+const handleDeleteReq = (requestAccidentID) => {
 
+    // console.log("delete", userID)
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            axios.delete(`http://localhost:4000/delete_requestAccidentData?requestAccidentID=${requestAccidentID}`)
+                .then(res => {
+                    if (res.data) {
+                        refetch();
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Data das been deleted.",
+                            icon: "success"
+                        });
+                        
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+    });
 }
 
 
 
     return (
         <div>
-             <h1 className="mx-auto text-center text-4xl font-bold italic pb-5 ">All User Accident Details </h1>
+             <h1 className="mx-auto text-center text-4xl font-bold italic pb-5 ">All User Request Accident Details </h1>
 
              <div className="mt-10">
                 {
@@ -146,6 +179,7 @@ const handleAddRequest = (requestAccidentID) => {
                                         <th>Delete</th>
                                         <th>Edit</th>
                                         <th>status</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -162,8 +196,9 @@ const handleAddRequest = (requestAccidentID) => {
                                                 <td>{accident?.repairCost}</td>
                                                 {/* <td> <button  className="btn btn-outline btn-success">show more</button> </td> */}
                                                 <td><button disabled={accident?.status === "approved" || accident?.status === "rejected"} onClick={()=>handleReject(accident?.requestAccidentID)} className="btn btn-error px-5 "> Reject </button></td>
-                                                <td> <button disabled={accident?.status === "approved" } onClick={()=>handleAddRequest(accident?.requestAccidentID)} className="btn btn-success px-5 text-white ">Add</button> </td>
+                                                <td> <button disabled={accident?.status === "approved" || accident?.status === "rejected" } onClick={()=>handleAddRequest(accident?.requestAccidentID)} className="btn btn-success px-5 text-white ">Add</button> </td>
                                                 <td>{accident?.status}</td>
+                                                <td><button onClick={()=>handleDeleteReq(accident?.requestAccidentID   )} className="btn btn-error px-5 "> <MdDeleteForever className="size-6" /> </button></td>
                                             </tr>
                                         )
                                     }

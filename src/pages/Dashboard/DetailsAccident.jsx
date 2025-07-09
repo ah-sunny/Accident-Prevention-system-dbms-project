@@ -7,6 +7,9 @@ import moment from 'moment';
 const DetailsAccident = () => {
     const { location } = useParams();
     const [allAccident, setAllAccident] = useState([])
+    const [showModal, setShowModal] = useState(false);
+    // const [errorMessage, setErrorMessage] = useState("");
+
     const navigate = useNavigate()
     // console.log(location)
 
@@ -14,19 +17,24 @@ const DetailsAccident = () => {
         axios.get(`http://localhost:4000/locationBasedAccidentDetails?location=${location}`)
             .then(res => {
                 setAllAccident(res.data)
-                // console.log(res.data)
+                // console.log("locationbased data: ", res.data)
+                // setErrorMessage("");
             })
             .catch(err => {
                 console.log(err)
+                if (err.response && err.response.status === 404) {
+                    // setErrorMessage(err.response.data.message);
+                    setShowModal(true); // Show modal when data is not found
+                }
             })
 
     }, [location]);
 
 
-const handleSingleDetails = (accidentID) => {
-    console.log(accidentID)
-    navigate(`/dashboard/single-details/${accidentID}`)
-}
+    const handleSingleDetails = (accidentID) => {
+        console.log(accidentID)
+        navigate(`/dashboard/single-details/${accidentID}`)
+    }
 
 
     return (
@@ -56,7 +64,7 @@ const handleSingleDetails = (accidentID) => {
                                     {
                                         allAccident.map((accident, index) =>
                                             <tr key={index} className="text-xl">
-                                                <th>{index+1}</th>
+                                                <th>{index + 1}</th>
                                                 <td>{accident?.location}</td>
                                                 <td>{accident?.date && moment(accident?.date).format('DD-MM-YYYY')}</td>
                                                 {/* <td>{accident?.time && moment(accident?.time, 'HH:mm:ss').format('hh:mm A')}</td> */}
@@ -64,7 +72,7 @@ const handleSingleDetails = (accidentID) => {
                                                 {/* <td>{accident?.damageParts}</td> */}
                                                 <td className="text-red-600 text-center">{accident?.deathNumber}</td>
                                                 {/* <td>{accident?.repairCost}</td> */}
-                                                <td> <button onClick={()=>handleSingleDetails(accident.accidentID)} className="btn btn-outline btn-success">show more</button> </td>
+                                                <td> <button onClick={() => handleSingleDetails(accident.accidentID)} className="btn btn-outline btn-success">show more</button> </td>
                                             </tr>
                                         )
                                     }
@@ -78,9 +86,30 @@ const handleSingleDetails = (accidentID) => {
                     </>
                         :
                         <>
-                            <Loading></Loading>
+                            {
+                                showModal ? <div className="h-screen text-center pt-28 ">
+                                    <div className="modal-box mx-auto border-2 border-red-400 ">
+                                        <h3 className="font-bold text-3xl">Notice!</h3>
+                                        <p className="py-4 text-xl">No accident records found for location : <span className="text-red-600 ">{location}</span></p>
+                                        <div className="modal-action">
+                                            <form method="dialog">
+                                                {/* if there is a button in form, it will close the modal */}
+                                                <button onClick={() => navigate(-1)} className="btn text-lg">Back</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                    :
+                                    <>
+                                        <Loading></Loading>
+                                    </>
+                            }
+
+
                         </>
                 }
+
+
 
 
             </div>

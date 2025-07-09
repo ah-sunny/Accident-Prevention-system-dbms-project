@@ -18,9 +18,10 @@ const Place = () => {
     const handlePlace = (data) => {
         console.log(data)
         if (data.place === "savar") {
-            axios.get('http://localhost:4000/get_dangerZone')
+            axios.get('http://localhost:4000/high-risk-areaRoute')
                 .then(res => {
                     setDangerZone(res.data)
+                    console.log("request datat: ", res.data)
                 })
                 .catch(err => {
                     console.log(err)
@@ -35,7 +36,7 @@ const Place = () => {
         switch (level) {
             case "High":
                 return "bg-red-500"; // Red for high level
-            case "Moderate":
+            case "Medium":
                 return "bg-yellow-500"; // Yellow for moderate level
             case "Low":
                 return "bg-green-500"; // Green for low level
@@ -53,7 +54,7 @@ const Place = () => {
 
     return (
         <div>
-            <h1 className="mx-auto text-center text-4xl font-bold italic pb-5 ">Danger Zone</h1>
+            <h1 className="w-full lg:w-[25%]  mx-auto text-center text-xl lg:text-4xl font-bold italic pb-3 border-b-2 border-dashed border-b-blue-800 mb-9 ">Danger Zone</h1>
             <div className="relative">
                 <form onSubmit={handleSubmit(handlePlace)} className="form-control">
                     <div className="flex  justify-center gap-5">
@@ -92,7 +93,7 @@ const Place = () => {
                     </div>
                     <div className="flex gap-5 italic" >
                         <p className="bg-yellow-500 w-20 pr-5"></p>
-                        <p> Danger level : <span className="font-extrabold not-italic text-lg ml-2">MODERATE</span></p>
+                        <p> Danger level : <span className="font-extrabold not-italic text-lg ml-2">Medium</span></p>
                     </div>
                     <div className="flex gap-5 italic">
                         <p className="bg-green-700 w-20 pr-5"></p>
@@ -109,7 +110,7 @@ const Place = () => {
             <div className="mt-28">
                 {
                     dangerZone.length == 0 ? <>
-                        <div className="card shadow-md p-10 mx-auto text-center w-2/5 bg-base-200 flex flex-col items-center relative">
+                        <div className="card border-2 border-red-400 shadow-2xl p-10 mx-auto text-center w-2/5 bg-base-200 flex flex-col items-center relative">
                             <div className="absolute -top-9 ">
                                 <FaArrowUp className=" size-16 text-gray-500" />
                             </div>
@@ -127,7 +128,7 @@ const Place = () => {
                                             xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 20 20"
                                             fill="currentColor"
-                                            className="h-5 w-5"
+                                            className="h-5 w-5 "
                                         >
                                             <path
                                                 fillRule="evenodd"
@@ -137,15 +138,20 @@ const Place = () => {
                                         </svg>
                                     </div>
                                     <div
-                                        className={` mb-10 text-end ${index % 2 === 0 ? "text-start timeline-start" : "text-end timeline-end"
+                                        className={` mb-10 text-end  ${index % 2 === 0 ? "text-start timeline-start" : "text-end timeline-end"
                                             }`}
                                     >
+                                      
 
-                                        <div className={`card text-black w-96 ${getBackgroundColor(item.level)} `}>
+                                        <div className={`card text-black w-96 ${getBackgroundColor(item.dangerLevel)} `}>
                                             <div className="card-body items-center text-center">
-                                                <h2 className="card-title">{item?.location}</h2>
-                                                <p>Danger Percentage : {item?.dangerPercentage}%</p>
-                                                <p>Danger Level : {item?.level}</p>
+                                                <h2 className="card-title btn btn-outline  text-2xl uppercase mb-5 ">{item?.location}</h2>
+                                                <p>Danger Percentage : <span className="text-xl font-extrabold italic">{item?.dangerPercentage}%</span></p>
+                                                <p>Danger Level : {item?.dangerLevel}</p>
+                                                {/* <div className="w-full absolute -rotate-45 -left-28 text-left top-5 p-3 rounded-md bg-neutral-content ">
+                                                    <p>{item?.status}</p>
+                                                </div> */}
+                                                <p className="font-bold italic">{item?.status}</p>
                                                 <div className="card-actions justify-end">
                                                     <Link to={`/dashboard/details-accident/${item.location}`}>
                                                         <button className="btn btn-primary">more info</button>
@@ -157,7 +163,7 @@ const Place = () => {
 
 
                                     </div>
-                                    <hr />
+                                    <hr className="bg-info" />
                                 </li>
                             ))}
                         </ul>

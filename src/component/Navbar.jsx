@@ -75,7 +75,7 @@ import { RiSkull2Fill } from "react-icons/ri";
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         <li><NavLink to="/" >Home</NavLink></li>
                         <li><NavLink to="/dashboard/overview" >Dashboard</NavLink></li>
-                        <li><NavLink to="/dashboard/place" className='flex justify-center items-center' > <RiSkull2Fill className="text-lg" /> Danger Zone</NavLink></li>
+                        <li><NavLink to="/dashboard/place" className='flex flex-row-reverse lg:flex-row justify-end  lg:justify-center items-center' > <RiSkull2Fill className="text-lg" /> Danger Zone</NavLink></li>
                         <li><NavLink to="/about-us" >About Us</NavLink></li>
                     </ul>
                 </div>

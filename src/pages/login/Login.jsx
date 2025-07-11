@@ -49,26 +49,26 @@ const Login = () => {
         <div className="relative hero min-h-screen justify-items-start   ">
             <img src={bgLogin} alt="" className="w-full h-full blur-sm -z-10 fixed" />
 
-            <div className="absolute top-[11%] left-[28%] rounded-full bg-blue-950 h-44 z-50">
-                <img src={profileIcon} alt="prf" className="h-full w-full object-fill "/>
+            <div className="  absolute  top-[11%] left-[40%] lg:left-[28%] rounded-full bg-blue-950 h-28 lg:h-44 z-50">
+                <img src={profileIcon} alt="prf" className="h-full w-full object-fill " />
             </div>
-            <div className="hero-content border-4 border-blue-800 w-72 lg:w-[900px]  my-8 rounded-3xl flex-col lg:flex-row-reverse gap-0  ml-32 p-0 h-auto lg:h-[550px] shadow-2xl">
+            <div className="hero-content border-4  border-blue-800 w-full md:w-72 lg:w-[900px]  my-8 rounded-3xl flex-col lg:flex-row-reverse gap-0  lg:ml-32 p-0 h-auto lg:h-[550px] shadow-2xl">
                 {/*  */}
-                <div className=" bg-base-300 h-full w-auto lg:w-[50%] rounded-r-3xl ">
-                    <img className="h-full w-auto lg:w-[450px] rounded-r-3xl" src="https://i.ibb.co.com/w00DBv9/login-1.jpg" alt="login img"  />
+                <div className=" hidden lg:block bg-base-300 h-full w-auto lg:w-[50%] rounded-r-3xl ">
+                    <img className="h-full w-auto lg:w-[450px] rounded-r-3xl" src="https://i.ibb.co.com/w00DBv9/login-1.jpg" alt="login img" />
                     {/* <img src={LoginImage} alt="login" className="" /> */}
                 </div>
-                <div className="card h-full w-auto lg:w-[50%] bg-base-300 shrink-0 border-r-2 border-red-700 rounded-r-none p-3 pt-16 rounded-3xl ">
+                <div className="card h-full w-full lg:w-[50%] bg-base-300 shrink-0 border-r-2 lg:border-red-700 lg:rounded-r-none p-3 pt-16 rounded-3xl ">
 
-        <h1 className="mx-auto text-3xl font-bold pt-5 pb-2">Login</h1>
+                    <h1 className="text-center mx-auto text-3xl font-bold pt-5 pb-2">Login</h1>
 
-                    <form className="card-body p-0 lg:px-5 pt-2 border-t-2 border-gray-600 border-dashed" onSubmit={handleSubmit(handleLogin)} >
+                    <form className="card-body p-0 lg:px-5 pt-2 border-t-2 border-gray-600 border-dashed " onSubmit={handleSubmit(handleLogin)} >
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-lg">Email</span>
                             </label>
                             <input {...register("email", { required: true })} type="email" placeholder="email" className="input input-bordered" />
-                            
+
                         </div>
                         {errors.email && <span className="text-red-500 text-xs" >Email is required</span>}
                         <div className="form-control relative">
@@ -90,9 +90,9 @@ const Login = () => {
                             <GoogleLogIn></GoogleLogIn>
                         </div>
                         <div className="mx-auto mt-1">
-                        <p className="text-sm" >Create new account
-                            <Link to='/register' className="text-blue-900 ml-5 " >     Register</Link>
-                        </p>
+                            <p className="text-sm" >Create new account
+                                <Link to='/register' className="text-blue-900 ml-5 " >     Register</Link>
+                            </p>
                         </div>
                     </form>
                 </div>

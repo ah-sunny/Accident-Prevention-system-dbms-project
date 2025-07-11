@@ -22,7 +22,7 @@ const AddDangerData = () => {
         // console.log("data : ", reqInfo)
 
         //send to server
-        axios.post("http://localhost:4000/add_mainAccidentDetails", data)
+        axios.post(`${import.meta.env.VITE_API_URL}/add_mainAccidentDetails`, data)
             .then(res => {
                 if (res.data) {
                     console.log('request sent ', res.data)

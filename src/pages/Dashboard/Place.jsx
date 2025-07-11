@@ -18,7 +18,7 @@ const Place = () => {
     const handlePlace = (data) => {
         console.log(data)
         if (data.place === "savar") {
-            axios.get('http://localhost:4000/high-risk-areaRoute')
+            axios.get(`${import.meta.env.VITE_API_URL}/high-risk-areaRoute`)
                 .then(res => {
                     setDangerZone(res.data)
                     console.log("request datat: ", res.data)
@@ -56,7 +56,7 @@ const Place = () => {
         <div>
             <h1 className="w-full lg:w-[25%]  mx-auto text-center text-xl lg:text-4xl font-bold italic pb-3 border-b-2 border-dashed border-b-blue-800 mb-2 lg:mb-9 ">Danger Zone</h1>
             <div className="relative">
-                 <div className="card items-center shadow-lg space-y-1 lg:space-y-5 mb-2 p-5 w-full lg:w-fit lg:absolute  lg:-right-2 lg:-top-16">
+                 <div className="card items-center lg:items-start shadow-lg space-y-1 lg:space-y-5 mb-2 p-5 w-full lg:w-fit lg:absolute  lg:-right-2 lg:-top-16">
                     {/* <p>hello</p> */}
                     <div className="flex gap-5 italic">
                         <p className="bg-red-800 w-20 pr-5"></p>

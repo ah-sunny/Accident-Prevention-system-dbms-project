@@ -10,7 +10,7 @@ const ManageDangerData = () => {
     const { data: allDangerData = [],refetch } = useQuery({
         queryKey: ['allDangerData',], 
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:4000/get_data`);
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/get_data`);
             return res.data;
         },
 
@@ -34,7 +34,7 @@ const handleDeletedata = (accidentID,requestAccidentID) => {
     }).then((result) => {
         if (result.isConfirmed) {
 
-            axios.delete(`http://localhost:4000/delete_dangerData?accidentID=${accidentID}`)
+            axios.delete(`${import.meta.env.VITE_API_URL}/delete_dangerData?accidentID=${accidentID}`)
                 .then(res => {
                     if (res.data) {
                         refetch();
@@ -45,7 +45,7 @@ const handleDeletedata = (accidentID,requestAccidentID) => {
                         });
 
 // update status of request is pending
-                        axios.put(`http://localhost:4000/update_reqStatus/${requestAccidentID}`, {status: "pending"})
+                        axios.put(`${import.meta.env.VITE_API_URL}/update_reqStatus/${requestAccidentID}`, {status: "pending"})
                         .then(res => {
                             if (res.data) {
                                 refetch();

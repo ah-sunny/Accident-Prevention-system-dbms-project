@@ -75,7 +75,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/edit-request/:requestAccidentID",
         element: <EditRequest></EditRequest>,
         // loader: ({params})=> fetch(`https://parcel-management-server-red.vercel.app/bookParcel/${params.id}`),
-        loader: ({params})=> fetch(`http://localhost:4000/get_req_accidentsID?requestAccidentID=${params.requestAccidentID}`)
+        loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/get_req_accidentsID?requestAccidentID=${params.requestAccidentID}`)
       },
       {
         path: "/dashboard/alluser",

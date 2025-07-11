@@ -28,7 +28,7 @@ const GoogleLogIn = () => {
         console.log("user details",userDetails)
 
          //send to server
-         axios.post("http://localhost:4000/add_user", userDetails)
+         axios.post(`${import.meta.env.VITE_API_URL}/add_user`, userDetails)
          .then(res => {
            if (res.data.insertedId) {
              console.log('user added to the database')

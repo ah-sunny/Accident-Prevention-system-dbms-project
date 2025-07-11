@@ -9,7 +9,7 @@ const AllUser = () => {
     const { data: alluser = [], refetch } = useQuery({
         queryKey: ['alluser',], // Adding user.email to query key to trigger re-fetch on email change
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:4000/get_alluser`);
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/get_alluser`);
             return res.data;
         },
 
@@ -32,7 +32,7 @@ const AllUser = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:4000/delete_user?userID=${userID}`)
+                axios.delete(`${import.meta.env.VITE_API_URL}/delete_user?userID=${userID}`)
                     .then(res => {
                         if (res.data) {
                             refetch();
@@ -71,7 +71,7 @@ const AllUser = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.put(`http://localhost:4000/update_user/${userID}`, data)
+                axios.put(`${import.meta.env.VITE_API_URL}/update_user/${userID}`, data)
                     .then(res => {
                         if (res.data) {
                             refetch();
@@ -113,7 +113,7 @@ const AllUser = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.put(`http://localhost:4000/update_user/${userID}`, data)
+                axios.put(`${import.meta.env.VITE_API_URL}/update_user/${userID}`, data)
                     .then(res => {
                         if (res.data) {
                             refetch();

@@ -14,7 +14,7 @@ const DetailsAccident = () => {
     // console.log(location)
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/locationBasedAccidentDetails?location=${location}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/locationBasedAccidentDetails?location=${location}`)
             .then(res => {
                 setAllAccident(res.data)
                 // console.log("locationbased data: ", res.data)

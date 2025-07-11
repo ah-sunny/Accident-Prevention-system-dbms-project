@@ -16,7 +16,7 @@ const EditRequest = () => {
     // console.log("editData: ", editData)
     const { register, handleSubmit, formState: { errors } } = useForm()
     // useEffect(() => {
-    //     axios.get(`http://localhost:4000/get_req_accidentsID?requestAccidentID=${requestAccidentIDInt}`)
+    //     axios.get(`${import.meta.env.VITE_API_URL}/get_req_accidentsID?requestAccidentID=${requestAccidentIDInt}`)
     //         .then(res => {
     //             setEditData(res.data[0])
     //             // console.log(res.data[0])
@@ -37,7 +37,7 @@ const EditRequest = () => {
 
 
 
-        const updateRes = await axios.put(`http://localhost:4000/update_request_accident`, updateReqData);
+        const updateRes = await axios.put(`${import.meta.env.VITE_API_URL}/update_request_accident`, updateReqData);
         console.log(updateRes.data)
         if (updateRes.data) {
             // show success popup

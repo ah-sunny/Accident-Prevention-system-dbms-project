@@ -11,7 +11,7 @@ const AllReqAccident = () => {
     const { data: AllReqData = [],refetch } = useQuery({
         queryKey: ['AllReqData',], 
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:4000/get_allReqAccident`);
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/get_allReqAccident`);
             return res.data;
         },
 
@@ -28,7 +28,7 @@ const handleReject =  (requestAccidentID) => {
         confirmButtonText: "Yes, Reject it!"
     }).then((result) => {
         if (result.isConfirmed) {
-            axios.put(`http://localhost:4000/update_reqStatus/${requestAccidentID}`, {status: "rejected"})
+            axios.put(`${import.meta.env.VITE_API_URL}/update_reqStatus/${requestAccidentID}`, {status: "rejected"})
             .then(res => {
                 if (res.data) {
                     refetch();
@@ -80,7 +80,7 @@ const handleAddRequest = (requestAccidentID) => {
         if (result.isConfirmed) {
 
             //add to main accident details
-            axios.post("http://localhost:4000/addReq_To_mainAccidentDetails", finalAccDetails)
+            axios.post(`${import.meta.env.VITE_API_URL}/addReq_To_mainAccidentDetails`, finalAccDetails)
                 .then(res => {
                     if (res.data) {
                         refetch();
@@ -91,7 +91,7 @@ const handleAddRequest = (requestAccidentID) => {
                         });
                         console.log("confirm", res.data)
                         // status update
-                        axios.put(`http://localhost:4000/update_reqStatus/${requestAccidentID}`, {status: "approved"})
+                        axios.put(`${import.meta.env.VITE_API_URL}/update_reqStatus/${requestAccidentID}`, {status: "approved"})
                         .then(res => {
                             if (res.data) {
                                 refetch();
@@ -134,7 +134,7 @@ const handleDeleteReq = (requestAccidentID) => {
     }).then((result) => {
         if (result.isConfirmed) {
 
-            axios.delete(`http://localhost:4000/delete_requestAccidentData?requestAccidentID=${requestAccidentID}`)
+            axios.delete(`${import.meta.env.VITE_API_URL}/delete_requestAccidentData?requestAccidentID=${requestAccidentID}`)
                 .then(res => {
                     if (res.data) {
                         refetch();

@@ -10,7 +10,7 @@ export const OverView = () => {
   // console.log("sidebar: ",userInfo)
 
   useEffect(() => {
-      axios.get(`http://localhost:4000/get_user?email=${user.email}`)
+      axios.get(`${import.meta.env.VITE_API_URL}/get_user?email=${user.email}`)
           .then(res => {
               setUserInfo(res.data.user)
               // console.log(res.data)

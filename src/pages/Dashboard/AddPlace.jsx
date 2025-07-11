@@ -24,7 +24,7 @@ export const AddPlace = () => {
     // console.log("place: ",userInfo)
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/get_user?email=${user.email}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/get_user?email=${user.email}`)
             .then(res => {
                 setUserInfo(res.data.user)
                 // console.log(res.data)
@@ -39,12 +39,12 @@ export const AddPlace = () => {
         const userID = userInfo?.userID
         const useremail = userInfo?.email
         const username = userInfo?.name
-        const reqInfo = { ...data, userID, useremail, username }
+        const reqInfo = { ...data, userID, useremail, username, status: "pending" }
         // console.log("clicked add butto", useremail)
-        console.log("data : ", reqInfo)
+        // console.log("data : ", reqInfo)
 
         //send to server
-        axios.post("http://localhost:4000/add_request_accident", reqInfo)
+        axios.post(`${import.meta.env.VITE_API_URL}/add_request_accident`, reqInfo)
             .then(res => {
                 if (res.data) {
                     // console.log('request sent ', res.data)
@@ -55,9 +55,11 @@ export const AddPlace = () => {
                         title: 'request sent successfully.',
                         showConfirmButton: false,
                         timer: 1200
+                    }).then(() => {
+                        navigate("/dashboard/my-request");
                     });
 
-                    //  Navigate("/");
+                   
                 }
             })
             .catch(error => {
@@ -65,7 +67,7 @@ export const AddPlace = () => {
                 toast.error(`${error.message}`)
             })
 
-        navigate("/dashboard/my-request");
+        // navigate("/dashboard/my-request");
 
     }
 
@@ -75,8 +77,8 @@ export const AddPlace = () => {
              style={{ backgroundImage: "url('https://i.ibb.co/TDjLYz7j/blurred-city-street-1.jpg')" }}
             */}
             <div
-                className="absolute inset-0 bg-center bg-cover -top-3  bg-gradient-to-r from-red-500 to-blue-500 text-white" 
-               
+                className="absolute inset-0 bg-center bg-cover -top-3  bg-gradient-to-r from-red-500 to-blue-500 text-white"
+
             ></div>
             <div className="relative z-10">
                 {/* <h1 className="text-3xl mx-auto text-center font-bold border-b-2 pb-3 border-black">Add Unsafe Routes & Accident Details</h1> */}
@@ -90,7 +92,7 @@ export const AddPlace = () => {
                                 <label className="label">
                                     <span className="label-text text-white">User Name :</span>
                                 </label>
-                                <input disabled defaultValue={userInfo.name} type="text" placeholder=" your name" className="input input-bordered text-black text-black" />
+                                <input disabled defaultValue={userInfo.name} type="text" placeholder=" your name" className="input input-bordered text-black " />
                             </div>
                             <div className="form-control w-full">
                                 <label className="label">
@@ -108,7 +110,7 @@ export const AddPlace = () => {
                                 <label className="label">
                                     <span className="label-text  text-white">Date</span>
                                 </label>
-                                <input {...register("date", { required: true })} type="text" placeholder="format like that '2022-02-02' " className="input input-bordered text-black text-black" />
+                                <input {...register("date", { required: true })} type="text" placeholder="format like that '2022-02-02' " className="input input-bordered text-black " />
                                 {errors.date && <span className="text-red-500 text-xs" >Date is required</span>}
                             </div>
                             <div className="form-control w-full">

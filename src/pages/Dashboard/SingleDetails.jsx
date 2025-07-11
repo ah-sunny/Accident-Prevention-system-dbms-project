@@ -10,7 +10,7 @@ const SingleDetails = () => {
     const [singleAccident, setSingleAccident] = useState({})
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/accidentDetailsByAccidentID?accidentID=${accidentIDInt}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/accidentDetailsByAccidentID?accidentID=${accidentIDInt}`)
             .then(res => {
                 setSingleAccident(res.data[0])
                 console.log(res.data[0])

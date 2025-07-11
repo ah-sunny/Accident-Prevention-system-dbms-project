@@ -16,7 +16,7 @@ const { user } = useAuth()
 // const [reFetch, setReFetch] = useState(false)
 
 // useEffect(() => { 
-//     axios.get(`http://localhost:4000/get_req_accidents?useremail=${user.email}`)
+//     axios.get(`${import.meta.env.VITE_API_URL}/get_req_accidents?useremail=${user.email}`)
 //     .then(res => {
 //         setMyRequest(res.data)
 //         // console.log(res.data)
@@ -31,7 +31,7 @@ const { user } = useAuth()
 const { data: myRequest = [], refetch } = useQuery({
     queryKey: ['myRequest', user.email], // Adding user.email to query key to trigger re-fetch on email change
     queryFn: async () => {
-        const res = await axios.get(`http://localhost:4000/get_req_accidents?useremail=${user.email}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/get_req_accidents?useremail=${user.email}`);
         return res.data;
     },
     enabled: !!user.email, // Only fetch data if user.email is available
@@ -56,7 +56,7 @@ const { data: myRequest = [], refetch } = useQuery({
     }).then((result) => {
         if (result.isConfirmed) {
   
-            axios.delete(`http://localhost:4000/deleteAccidentReq?requestAccidentID=${requestAccidentID}`)
+            axios.delete(`${import.meta.env.VITE_API_URL}/deleteAccidentReq?requestAccidentID=${requestAccidentID}`)
                 .then(res => {
                     if (res.data) {
                         refetch();

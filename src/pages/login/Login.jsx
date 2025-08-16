@@ -6,9 +6,8 @@ import useAuth from "../../hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import bgLogin from "../../assets/loginMap.jpg"
-// import LoginImage from "../../assets/image-removebg-preview.png"
-import profileIcon from "../../assets/iconImage-removebg-preview.png"
-
+import LoginImage from "../../assets/image-removebg-preview.png"
+// import profileIcon from "../../assets/iconImage-removebg-preview.png"
 
 
 const Login = () => {
@@ -41,26 +40,25 @@ const Login = () => {
                 // console.error(error)
                 toast.error(`${error.message}`)
             })
-
     }
-
 
     return (
         <div className="relative hero min-h-screen justify-items-start   ">
             <img src={bgLogin} alt="" className="w-full h-full blur-sm -z-10 fixed" />
 
-            <div className="  absolute  top-[11%] left-[40%] lg:left-[28%] rounded-full bg-blue-950 h-28 lg:h-44 z-50">
+            {/* <div className="  absolute  -top-[2%] left-[40%] lg:left-[36%] rounded-full bg-blue-950 h-28 lg:h-32 z-50">
                 <img src={profileIcon} alt="prf" className="h-full w-full object-fill " />
-            </div>
+                
+            </div> */}
             <div className="hero-content border-4  border-blue-800 w-full md:w-72 lg:w-[900px]  my-8 rounded-3xl flex-col lg:flex-row-reverse gap-0  lg:ml-32 p-0 h-auto lg:h-[550px] shadow-2xl">
                 {/*  */}
                 <div className=" hidden lg:block bg-base-300 h-full w-auto lg:w-[50%] rounded-r-3xl ">
-                    <img className="h-full w-auto lg:w-[450px] rounded-r-3xl" src="https://i.ibb.co.com/w00DBv9/login-1.jpg" alt="login img" />
-                    {/* <img src={LoginImage} alt="login" className="" /> */}
+                    {/* <img className="h-full w-auto lg:w-[450px] rounded-r-3xl" src="https://i.ibb.co.com/w00DBv9/login-1.jpg" alt="login img" /> */}
+                    <img src={LoginImage} alt="login image" className="h-full w-auto lg:w-[450px] rounded-r-3xl" />
                 </div>
                 <div className="card h-full w-full lg:w-[50%] bg-base-300 shrink-0 border-r-2 lg:border-red-700 lg:rounded-r-none p-3 pt-16 rounded-3xl ">
 
-                    <h1 className="text-center mx-auto text-3xl font-bold pt-5 pb-2">Login</h1>
+                    <h1 className="text-center mx-auto text-2xl lg:text-4xl font-bold font-mono italic pt-0 pb-5 ">Login Your Account</h1>
 
                     <form className="card-body p-0 lg:px-5 pt-2 border-t-2 border-gray-600 border-dashed " onSubmit={handleSubmit(handleLogin)} >
                         <div className="form-control">

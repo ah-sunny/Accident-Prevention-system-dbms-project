@@ -7,6 +7,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import bgLogin from "../../assets/loginMap.jpg"
 import LoginImage from "../../assets/image-removebg-preview.png"
+import { motion } from "framer-motion"
 // import profileIcon from "../../assets/iconImage-removebg-preview.png"
 
 
@@ -50,7 +51,12 @@ const Login = () => {
                 <img src={profileIcon} alt="prf" className="h-full w-full object-fill " />
                 
             </div> */}
-            <div className="hero-content border-4  border-blue-800 w-full md:w-72 lg:w-[900px]  my-8 rounded-3xl flex-col lg:flex-row-reverse gap-0  lg:ml-32 p-0 h-auto lg:h-[550px] shadow-2xl">
+            <motion.div className="hero-content border-4  border-blue-800 w-full md:w-72 lg:w-[900px]  my-8 rounded-3xl flex-col lg:flex-row-reverse gap-0  lg:ml-32 p-0 h-auto lg:h-[550px] shadow-2xl"
+                initial={{ opacity: 0, x: 200 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -200 }}
+                transition={{ duration: 1 }}
+            >
                 {/*  */}
                 <div className=" hidden lg:block bg-base-300 h-full w-auto lg:w-[50%] rounded-r-3xl ">
                     {/* <img className="h-full w-auto lg:w-[450px] rounded-r-3xl" src="https://i.ibb.co.com/w00DBv9/login-1.jpg" alt="login img" /> */}
@@ -94,7 +100,7 @@ const Login = () => {
                         </div>
                     </form>
                 </div>
-            </div>
+            </motion.div>
 
             {/* <ToastContainer></ToastContainer> */}
         </div>
